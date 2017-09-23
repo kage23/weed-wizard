@@ -20,6 +20,9 @@ class PlayerStatusComponent extends React.Component {
       const weedRanOut = this.props.weed.filter((weed) => {
         return newProps.weed.map(newWeed => newWeed.id).indexOf(weed.id) === -1;
       })[0];
+      if (weedRanOut.selected && newProps.weed.length) {
+        this.props.selectWeed(0);
+      }
       this.props.weedRanOutNotification(weedRanOut.label);
     }
   }
