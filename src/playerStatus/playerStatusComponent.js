@@ -11,6 +11,7 @@ class PlayerStatusComponent extends React.Component {
     highness: PropTypes.number,
 
     selectWeed: PropTypes.func,
+    selectTool: PropTypes.func,
     weedRanOutNotification: PropTypes.func
   };
 
@@ -54,8 +55,12 @@ class PlayerStatusComponent extends React.Component {
   renderTools() {
     const tools = this.props.tools.map((tool, idx) => {
       const fullTool = getToolById(tool.id);
+
       return (
-        <div key={idx}>
+        <div
+          key={idx}
+          className={`playerStatus__itemList__item ${tool.selected ? 'playerStatus__itemList__item--selected' : ''}`}
+          onClick={() => { this.props.selectTool(idx) }}>
           <p>
             <b>{fullTool.label}:</b>
             <i>{fullTool.description}</i>
@@ -63,9 +68,10 @@ class PlayerStatusComponent extends React.Component {
         </div>
       );
     });
+
     return (
-      <div>
-        <h3>Tools You Have</h3>
+      <div className="playerStatus__itemList">
+        <h3 className="playerStatus__itemList__header">Tools You Have</h3>
         {tools}
       </div>
     );

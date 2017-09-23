@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 
 import {
   SELECT_WEED,
+  SELECT_TOOL,
   SMOKE_WEED,
   DECAY_HIGHNESS,
   UPDATE_NOTIFICATIONS,
@@ -62,6 +63,17 @@ function player(state = initialPlayerState, action = null) {
         weed: state.weed.map((weed, idx) => {
           return {
             ...weed,
+            selected: idx === action.index
+          };
+        })
+      };
+
+    case SELECT_TOOL:
+      return {
+        ...state,
+        tools: state.tools.map((tool, idx) => {
+          return {
+            ...tool,
             selected: idx === action.index
           };
         })

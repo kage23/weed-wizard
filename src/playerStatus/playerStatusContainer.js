@@ -3,6 +3,7 @@ import PlayerStatusComponent from '../playerStatus/playerStatusComponent';
 
 import {
   selectWeed,
+  selectTool,
   addNotification
 } from '../state/actions';
 
@@ -17,6 +18,11 @@ const mapDispatchToProps = dispatch => {
     selectWeed: (idx) => {
       dispatch(selectWeed(idx));
     },
+
+    selectTool: (idx) => {
+      dispatch(selectTool(idx));
+    },
+
     weedRanOutNotification: (label) => {
       dispatch(addNotification(`You ran out of ${label}!`));
     }
