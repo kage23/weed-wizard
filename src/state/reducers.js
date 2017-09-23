@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import {
+  SELECT_WEED,
   SMOKE_WEED,
   DECAY_HIGHNESS,
   UPDATE_NOTIFICATIONS,
@@ -17,7 +18,8 @@ const initialPlayerState = {
   weed: [
     {
       id: 0,
-      quantity: 0.125 // in ozs
+      quantity: 0.125, // in ozs
+      selected: true
     }
   ],
   tools: [
@@ -54,6 +56,17 @@ function getHigh(state = initialPlayerState, action = null) {
 
 function player(state = initialPlayerState, action = null) {
   switch (action.type) {
+    case SELECT_WEED:
+      return {
+        ...state,
+        weed: state.weed.map((weed, idx) => {
+          return {
+            ...weed,
+            selected: idx === action.index
+          };
+        })
+      };
+
     case SMOKE_WEED:
       return getHigh(state, action);
 

@@ -9,14 +9,10 @@ class PlayerStatusComponent extends React.Component {
     weed: PropTypes.array,
     tools: PropTypes.array,
     highness: PropTypes.number,
+
+    selectWeed: PropTypes.func,
     weedRanOutNotification: PropTypes.func
   };
-
-  constructor(props) {
-    super(props);
-
-    this.renderWeed = this.renderWeed.bind(this);
-  }
 
   componentWillReceiveProps(newProps) {
     if (newProps.weed.length < this.props.weed.length) {
@@ -30,8 +26,12 @@ class PlayerStatusComponent extends React.Component {
   renderWeed() {
     const weeds = this.props.weed.map((weed, idx) => {
       const fullWeed = getStrainById(weed.id);
+
       return (
-        <div key={idx}>
+        <div
+          key={idx}
+          className={`playerStatus__itemList__item ${weed.selected ? 'playerStatus__itemList__item--selected' : ''}`}
+          onClick={() => { this.props.selectWeed(idx) }}>
           <p>
             <b>{fullWeed.label}:</b>
             <i>{fullWeed.description}</i>
@@ -42,9 +42,10 @@ class PlayerStatusComponent extends React.Component {
         </div>
       );
     });
+
     return (
-      <div>
-        <h3>Weed You Have</h3>
+      <div className="playerStatus__itemList">
+        <h3 className="playerStatus__itemList__header">Weed You Have</h3>
         {weeds}
       </div>
     );
