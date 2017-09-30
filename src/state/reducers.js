@@ -7,7 +7,8 @@ import {
   DECAY_HIGHNESS,
   UPDATE_NOTIFICATIONS,
   ADD_NOTIFICATION,
-  CHANGE_WEED_UOM
+  CHANGE_WEED_UOM,
+  ADD_SEED
 } from './actions';
 
 import {
@@ -106,6 +107,20 @@ function player(state = initialPlayerState, action = null) {
       return {
         ...state,
         highness: Math.max(state.highness - (COME_DOWN_RATE * action.timeDelta), 0)
+      };
+
+    case ADD_SEED:
+      return {
+        ...state,
+        weed: state.weed.map((strain) => {
+          if (strain.id === action.strain.id) {
+            return {
+              ...strain,
+              seeds: strain.seeds + 1
+            };
+          }
+          return strain;
+        })
       };
 
     default:

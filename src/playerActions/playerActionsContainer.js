@@ -1,10 +1,15 @@
 import { connect } from 'react-redux';
 import PlayerActionsComponent from './playerActionsComponent';
 
-import { smokeWeed, addNotification } from '../state/actions';
+import {
+  smokeWeed,
+  addNotification,
+  addSeed
+} from '../state/actions';
 
 import { getToolById } from '../utils/toolUtils';
 import { getStrainById } from '../utils/weedUtils';
+import { BASE_SEED_DROP_RATE } from '../utils/constants';
 
 const mapStateToProps = state => {
   return {
@@ -22,6 +27,11 @@ const mapDispatchToProps = dispatch => {
 
       dispatch(smokeWeed(strain, tool));
       dispatch(addNotification(`You smoked ${strain.label} out of ${tool.label}.`));
+
+      if (Math.random() <= BASE_SEED_DROP_RATE * strain.seedDropMod) {
+        dispatch(addSeed(strain));
+        dispatch(addNotification('You found a seed!'));
+      }
     }
   };
 };

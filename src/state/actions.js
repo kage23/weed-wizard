@@ -7,6 +7,7 @@ export const DECAY_HIGHNESS = 'DECAY_HIGHNESS';
 export const UPDATE_NOTIFICATIONS = 'UPDATE_NOTIFICATIONS';
 export const ADD_NOTIFICATION = 'ADD_NOTIFICATION';
 export const CHANGE_WEED_UOM = 'CHANGE_WEED_UOM';
+export const ADD_SEED = 'ADD_SEED';
 
 export function selectWeed(index) {
   return {
@@ -55,5 +56,12 @@ export function changeSettingsUoM(uom) {
   return {
     type: CHANGE_WEED_UOM,
     uom
+  };
+}
+
+export function addSeed(strain) {
+  return {
+    type: ADD_SEED,
+    strain
   };
 }
