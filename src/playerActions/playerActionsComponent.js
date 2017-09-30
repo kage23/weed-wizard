@@ -6,7 +6,6 @@ import styles from './playerActions.css';
 
 class PlayerActionsComponent extends React.Component {
   static propTypes = {
-    hasWeed: PropTypes.bool,
     selectedWeed: PropTypes.object,
     selectedTool: PropTypes.object,
 
@@ -16,7 +15,7 @@ class PlayerActionsComponent extends React.Component {
   render() {
     return (
       <div className={styles.playerActions}>
-        {this.props.hasWeed
+        {this.props.selectedWeed.quantity > 0 && this.props.selectedTool
           ? <Button
               onClick={() => {
                 this.props.onSmokeWeed(this.props.selectedWeed, this.props.selectedTool);

@@ -17,7 +17,6 @@ import {
 
 const mapStateToProps = state => {
   return {
-    hasWeed: state.player.weed.length > 0,
     selectedWeed: state.player.weed.filter(weed => weed.selected)[0],
     selectedTool: state.player.tools.filter(tool => tool.selected)[0]
   };

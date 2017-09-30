@@ -4,7 +4,6 @@ import PlayerStatusComponent from './playerStatusComponent';
 import {
   selectWeed,
   selectTool,
-  addNotification,
   changeSettingsUoM,
   decayHighness
 } from '../state/actions';

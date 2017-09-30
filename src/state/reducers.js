@@ -13,7 +13,6 @@ import {
 } from './actions';
 
 import {
-  CONVERSIONS,
   COME_DOWN_RATE,
   DEFAULT_NOTIFICATION_LIFE
 } from '../utils/constants';
