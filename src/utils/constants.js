@@ -96,12 +96,14 @@ export const WEED_UOMS = [
     id: 0,
     name: 'oz',
     label: 'ounce',
+    plural: 'ounces',
     article: 'an'
   },
   {
     id: 1,
     name: 'g',
     label: 'gram',
+    plural: 'grams',
     article: 'a'
   }
 ];
