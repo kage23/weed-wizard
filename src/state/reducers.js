@@ -22,7 +22,8 @@ const initialPlayerState = {
       id: 0,
       quantity: 0.125, // in ozs
       uom: 'oz', // always saved in ozs
-      selected: true
+      selected: true,
+      seeds: 0
     }
   ],
   tools: [

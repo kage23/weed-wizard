@@ -78,16 +78,21 @@ class PlayerStatusComponent extends React.Component {
           description={fullWeed.description}
           selected={weed.selected}
           onClick={() => { this.props.selectWeed(idx) }}>
-          <span>
-            Amount:
-            {` ${parseQuantity(weed, fullSettingsUoM.name)} `}
-            {`${fullSettingsUoM.label}${
-              convertedQuantity > 1
-                ? 's'
-                : ''
-              }`
-            }
-            </span>
+          <div className={styles.weedListItemContent}>
+            <p className={styles.weedListItemContentItem}>
+              <b>Amount:</b>
+              {` ${parseQuantity(weed, fullSettingsUoM.name)} `}
+              {`${fullSettingsUoM.label}${
+                convertedQuantity > 1
+                  ? 's'
+                  : ''
+                }`
+              }
+            </p>
+            {fullWeed.seeds
+              ? <p className={styles.weedListItemContentItem}><b>Seeds</b>: {fullWeed.seeds}</p>
+              : null}
+          </div>
         </ItemListItem>
       );
     });
