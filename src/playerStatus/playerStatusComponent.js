@@ -48,41 +48,43 @@ class PlayerStatusComponent extends React.Component {
 
   renderWeed() {
     const fullSettingsUoM = getUomByName(this.props.settingsUoM);
-    const weeds = this.props.weed.map((weed, idx) => {
-      const weedByStrain = getStrainById(weed.id);
-      const fullWeed = {
-        ...weed,
-        ...weedByStrain
-      };
-      const convertedQuantity = fullWeed.uom === fullSettingsUoM.name
-        ? fullWeed.quantity
-        : fullWeed.quantity * CONVERSIONS[`${fullWeed.uom.toUpperCase()}_TO_${fullSettingsUoM.name.toUpperCase()}`];
+    const weeds = this.props.weed
+      .filter((strain) => strain.quantity || strain.seeds)
+      .map((weed, idx) => {
+        const weedByStrain = getStrainById(weed.id);
+        const fullWeed = {
+          ...weed,
+          ...weedByStrain
+        };
+        const convertedQuantity = fullWeed.uom === fullSettingsUoM.name
+          ? fullWeed.quantity
+          : fullWeed.quantity * CONVERSIONS[`${fullWeed.uom.toUpperCase()}_TO_${fullSettingsUoM.name.toUpperCase()}`];
 
-      return (
-        <ItemListItem
-          key={fullWeed.id}
-          label={fullWeed.label}
-          description={fullWeed.description}
-          selected={weed.selected}
-          onClick={() => { this.props.selectWeed(idx) }}>
-          <div className={styles.weedListItemContent}>
-            <p className={styles.weedListItemContentItem}>
-              <b>Amount:</b>
-              {` ${parseQuantity(weed, fullSettingsUoM.name)} `}
-              {`${fullSettingsUoM.label}${
-                convertedQuantity > 1
-                  ? 's'
-                  : ''
-                }`
-              }
-            </p>
-            {fullWeed.seeds
-              ? <p className={styles.weedListItemContentItem}><b>Seeds</b>: {fullWeed.seeds}</p>
-              : null}
-          </div>
-        </ItemListItem>
-      );
-    });
+        return (
+          <ItemListItem
+            key={fullWeed.id}
+            label={fullWeed.label}
+            description={fullWeed.description}
+            selected={weed.selected}
+            onClick={() => { this.props.selectWeed(idx) }}>
+            <div className={styles.weedListItemContent}>
+              <p className={styles.weedListItemContentItem}>
+                <b>Amount:</b>
+                {` ${parseQuantity(weed, fullSettingsUoM.name)} `}
+                {`${fullSettingsUoM.label}${
+                  convertedQuantity > 1
+                    ? 's'
+                    : ''
+                  }`
+                }
+              </p>
+              {fullWeed.seeds
+                ? <p className={styles.weedListItemContentItem}><b>Seeds</b>: {fullWeed.seeds}</p>
+                : null}
+            </div>
+          </ItemListItem>
+        );
+      });
     const weedUomSelectors = WEED_UOMS.map((uom) => (
       <span
         key={uom.name}
