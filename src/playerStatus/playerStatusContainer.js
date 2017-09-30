@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PlayerStatusComponent from '../playerStatus/playerStatusComponent';
+import PlayerStatusComponent from './playerStatusComponent';
 
 import {
   selectWeed,

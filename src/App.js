@@ -6,6 +6,7 @@ import { createStore } from 'redux';
 
 import PlayerActionsContainer from './playerActions/playerActionsContainer';
 import PlayerStatusContainer from './playerStatus/playerStatusContainer';
+import GardenContainer from './garden/gardenContainer';
 import NotificationsContainer from './notifications/notificationsContainer';
 
 import { decayHighness } from './state/actions';
@@ -51,6 +52,7 @@ class App extends Component {
           <div className={styles.appBody}>
             <PlayerActionsContainer />
             <PlayerStatusContainer />
+            <GardenContainer />
             <NotificationsContainer />
             <p>All weed names in this game are from or inspired by the <a href="http://weednamemaker.com/">Weed Name
               Maker</a>.</p>
