@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ItemList from '../components/item-list';
-import ItemListItem from '../components/item-list-item';
-import { getStrainById } from '../utils/weed-utils';
+import ItemList from '../components/itemList';
+import ItemListItem from '../components/itemListItem';
+import { getStrainById } from '../utils/weedUtils';
 import {
   parseQuantity,
   fixedTo1orRounded
-} from '../utils/number-utils';
-import { getToolById } from '../utils/tool-utils';
-import { getUomByName } from '../utils/misc-utils';
+} from '../utils/numberUtils';
+import { getToolById } from '../utils/toolUtils';
+import { getUomByName } from '../utils/miscUtils';
 import {
   CONVERSIONS,
   HIGHNESS_CAP,

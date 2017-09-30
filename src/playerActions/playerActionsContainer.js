@@ -3,8 +3,8 @@ import PlayerActionsComponent from './playerActionsComponent';
 
 import { smokeWeed, addNotification } from '../state/actions';
 
-import { getToolById } from '../utils/tool-utils';
-import { getStrainById } from '../utils/weed-utils';
+import { getToolById } from '../utils/toolUtils';
+import { getStrainById } from '../utils/weedUtils';
 
 const mapStateToProps = state => {
   return {

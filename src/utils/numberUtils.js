@@ -1,5 +1,5 @@
 import { CONVERSIONS } from './constants';
-import { getUomByName } from './misc-utils';
+import { getUomByName } from './miscUtils';
 
 export function parseQuantity(weed, uom = 'oz') {
   const fullUom = getUomByName(uom);
