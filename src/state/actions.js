@@ -2,7 +2,8 @@ import { DEFAULT_NOTIFICATION_LIFE } from '../utils/constants';
 
 export const SELECT_WEED = 'SELECT_WEED';
 export const SELECT_TOOL = 'SELECT_TOOL';
-export const SMOKE_WEED = 'SMOKE_WEED';
+export const INCREASE_HIGHNESS = 'INCREASE_HIGHNESS';
+export const DECREASE_WEED_QUANTITY = 'DECREASE_WEED_QUANTITY';
 export const DECAY_HIGHNESS = 'DECAY_HIGHNESS';
 export const UPDATE_NOTIFICATIONS = 'UPDATE_NOTIFICATIONS';
 export const ADD_NOTIFICATION = 'ADD_NOTIFICATION';
@@ -23,11 +24,18 @@ export function selectTool(index) {
   };
 }
 
-export function smokeWeed(strain, tool) {
+export function increaseHighness(amount) {
   return {
-    type: SMOKE_WEED,
-    strain: strain,
-    tool: tool
+    type: INCREASE_HIGHNESS,
+    amount
+  };
+}
+
+export function decreaseWeedQuantity(strainId, amount) {
+  return {
+    type: DECREASE_WEED_QUANTITY,
+    strainId,
+    amount
   };
 }
 

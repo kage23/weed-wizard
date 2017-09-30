@@ -32,10 +32,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(changeSettingsUoM(uom));
     },
 
-    weedRanOutNotification: (label) => {
-      dispatch(addNotification(`You ran out of ${label}!`));
-    },
-
     decayHighness: () => {
       const now = new Date();
       const timeDelta = now - lastUpdate;

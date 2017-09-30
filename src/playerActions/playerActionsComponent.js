@@ -19,7 +19,7 @@ class PlayerActionsComponent extends React.Component {
         {this.props.hasWeed
           ? <Button
               onClick={() => {
-                this.props.onSmokeWeed(this.props.selectedWeed.id, this.props.selectedTool.id);
+                this.props.onSmokeWeed(this.props.selectedWeed, this.props.selectedTool);
               }}
               label="Smoke Weed" />
           : null}

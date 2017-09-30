@@ -27,7 +27,6 @@ class PlayerStatusComponent extends React.Component {
     selectWeed: PropTypes.func,
     selectTool: PropTypes.func,
     onChangeSettingsUoM: PropTypes.func,
-    weedRanOutNotification: PropTypes.func,
     decayHighness: PropTypes.func
   };
 
@@ -47,18 +46,6 @@ class PlayerStatusComponent extends React.Component {
     this.props.decayHighness();
   };
 
-  componentWillReceiveProps(newProps) {
-    if (newProps.weed.length < this.props.weed.length) {
-      const weedRanOut = this.props.weed.filter((weed) => {
-        return newProps.weed.map(newWeed => newWeed.id).indexOf(weed.id) === -1;
-      })[0];
-      if (weedRanOut.selected && newProps.weed.length) {
-        this.props.selectWeed(0);
-      }
-      this.props.weedRanOutNotification(weedRanOut.label);
-    }
-  }
-
   renderWeed() {
     const fullSettingsUoM = getUomByName(this.props.settingsUoM);
     const weeds = this.props.weed.map((weed, idx) => {
@@ -73,7 +60,7 @@ class PlayerStatusComponent extends React.Component {
 
       return (
         <ItemListItem
-          key={idx}
+          key={fullWeed.id}
           label={fullWeed.label}
           description={fullWeed.description}
           selected={weed.selected}

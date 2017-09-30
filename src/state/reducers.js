@@ -3,7 +3,8 @@ import { combineReducers } from 'redux';
 import {
   SELECT_WEED,
   SELECT_TOOL,
-  SMOKE_WEED,
+  INCREASE_HIGHNESS,
+  DECREASE_WEED_QUANTITY,
   DECAY_HIGHNESS,
   UPDATE_NOTIFICATIONS,
   ADD_NOTIFICATION,
@@ -42,35 +43,6 @@ const initialSettings = {
 };
 
 /**
- * Reduce weed, increase highness.
- * @param state
- * @param action
- * @returns {{weed: Array.<T>, highness: (number|*|highness)}}
- */
-function getHigh(state = initialPlayerState, action = null) {
-  const weed = Object.assign(
-    {},
-    action.strain,
-    state.weed.filter(strain => strain.id === action.strain.id )[0]
-  );
-  let { highness } = state;
-
-  highness += weed.highness;
-  weed.quantity = Math.max(weed.quantity - (action.tool.size * CONVERSIONS.BOWL_TO_OZ), 0);
-
-  return {
-    ...state,
-    weed: state.weed.map((strain) => {
-      if (strain.id === action.strain.id) {
-        return weed;
-      }
-      return strain;
-    }).filter(strain => strain.quantity > 0),
-    highness
-  };
-}
-
-/**
  * Player action reducers
  * @param state
  * @param action
@@ -100,8 +72,25 @@ function player(state = initialPlayerState, action = null) {
         })
       };
 
-    case SMOKE_WEED:
-      return getHigh(state, action);
+    case INCREASE_HIGHNESS:
+      return {
+        ...state,
+        highness: state.highness + action.amount
+      };
+
+    case DECREASE_WEED_QUANTITY:
+      return {
+        ...state,
+        weed: state.weed.map((strain) => {
+          if (strain.id === action.strainId) {
+            return {
+              ...strain,
+              quantity: strain.quantity - action.amount
+            };
+          }
+          return strain;
+        })
+      };
 
     case DECAY_HIGHNESS:
       return {

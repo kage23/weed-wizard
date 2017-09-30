@@ -2,14 +2,18 @@ import { connect } from 'react-redux';
 import PlayerActionsComponent from './playerActionsComponent';
 
 import {
-  smokeWeed,
+  increaseHighness,
+  decreaseWeedQuantity,
   addNotification,
   addSeed
 } from '../state/actions';
 
 import { getToolById } from '../utils/toolUtils';
 import { getStrainById } from '../utils/weedUtils';
-import { BASE_SEED_DROP_RATE } from '../utils/constants';
+import {
+  CONVERSIONS,
+  BASE_SEED_DROP_RATE
+} from '../utils/constants';
 
 const mapStateToProps = state => {
   return {
@@ -21,16 +25,35 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSmokeWeed: (strainId, toolId) => {
-      const strain = getStrainById(strainId);
-      const tool = getToolById(toolId);
+    onSmokeWeed: (strain, tool) => {
+      const strainProps = getStrainById(strain.id);
+      const toolProps = getToolById(tool.id);
+      const fullStrain = {
+        ...strainProps,
+        ...strain
+      };
+      const fullTool = {
+        ...toolProps,
+        ...tool
+      };
+      const baseBowlSize = CONVERSIONS[`BOWL_TO_${fullStrain.uom.toUpperCase()}`];
 
-      dispatch(smokeWeed(strain, tool));
-      dispatch(addNotification(`You smoked ${strain.label} out of ${tool.label}.`));
+      const amountToSmoke = Math.min(
+        fullStrain.quantity,
+        fullTool.size * baseBowlSize
+      );
 
-      if (Math.random() <= BASE_SEED_DROP_RATE * strain.seedDropMod) {
+      dispatch(increaseHighness(fullStrain.highness * (amountToSmoke / baseBowlSize)));
+      dispatch(decreaseWeedQuantity(strain.id, amountToSmoke));
+      dispatch(addNotification(`You smoked ${fullStrain.label} out of ${fullTool.label}.`));
+
+      if (Math.random() <= BASE_SEED_DROP_RATE * fullStrain.seedDropMod) {
         dispatch(addSeed(strain));
         dispatch(addNotification('You found a seed!'));
+      }
+
+      if (fullStrain.quantity - amountToSmoke <= 0) {
+        dispatch(addNotification(`You ran out of ${fullStrain.label}!`));
       }
     }
   };
