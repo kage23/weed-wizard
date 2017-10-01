@@ -16,9 +16,22 @@ import {
 } from '../utils/constants';
 
 const mapStateToProps = state => {
+  const selectedWeedFromState = state.player.weed.filter(weed => weed.selected)[0];
+  const selectedWeedProps = getStrainById(selectedWeedFromState.id);
+  const selectedWeed = {
+    ...selectedWeedFromState,
+    ...selectedWeedProps
+  };
+  const selectedToolFromState = state.player.tools.filter(tool => tool.selected)[0];
+  const selectedToolProps = getStrainById(selectedToolFromState.id);
+  const selectedTool = {
+    ...selectedToolFromState,
+    ...selectedToolProps
+  };
+
   return {
-    selectedWeed: state.player.weed.filter(weed => weed.selected)[0],
-    selectedTool: state.player.tools.filter(tool => tool.selected)[0]
+    selectedWeed,
+    selectedTool
   };
 };
 

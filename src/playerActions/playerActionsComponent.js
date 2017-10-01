@@ -20,7 +20,8 @@ class PlayerActionsComponent extends React.Component {
               onClick={() => {
                 this.props.onSmokeWeed(this.props.selectedWeed, this.props.selectedTool);
               }}
-              label="Smoke Weed" />
+              label="Smoke Weed"
+              tooltip={`Click to smoke ${this.props.selectedWeed.label} from your ${this.props.selectedTool.label}.`} />
           : null}
       </div>
     );
