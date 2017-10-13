@@ -1,17 +1,30 @@
 import React, { Component } from 'react';
-import weedWizard from './state/reducers';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import {
+  combineReducers,
+  createStore
+} from 'redux';
 
+import GardenContainer from './garden/gardenContainer';
+import garden from './garden/gardenReducers';
+import NotificationsContainer from './notifications/notificationsContainer';
+import notifications from './notifications/notificationsReducers';
 import PlayerActionsContainer from './player/playerActionsContainer';
 import PlayerContainer from './player/playerContainer';
-import GardenContainer from './garden/gardenContainer';
-import NotificationsContainer from './notifications/notificationsContainer';
+import player from './player/playerReducers';
+import settings from './settings/settingsReducers';
 
 //import logo from './logo.svg';
 import styles from './App.css';
 
-let store = createStore(weedWizard);
+let reducer = combineReducers({
+  garden,
+  notifications,
+  player,
+  settings
+});
+
+let store = createStore(reducer);
 
 class App extends Component {
   render() {
