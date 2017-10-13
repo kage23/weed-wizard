@@ -8,7 +8,7 @@ import {
   decreaseSeedQuantity,
   addSeed,
 } from './playerActions';
-import { plantSeed } from '../state/actions';
+import { plantSeed } from '../garden/gardenActions';
 import { getToolById } from '../utils/toolUtils';
 import {
   getStrainById,

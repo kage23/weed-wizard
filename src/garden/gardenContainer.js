@@ -9,7 +9,7 @@ import {
 import {
   agePlant,
   removePlant
-} from '../state/actions';
+} from './gardenActions';
 import { BASE_HARVEST_PER_PLANT } from '../utils/constants';
 import { getStrainById } from '../utils/weedUtils';
 
