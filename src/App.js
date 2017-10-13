@@ -3,8 +3,8 @@ import weedWizard from './state/reducers';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import PlayerActionsContainer from './playerActions/playerActionsContainer';
-import PlayerStatusContainer from './playerStatus/playerStatusContainer';
+import PlayerActionsContainer from './player/playerActionsContainer';
+import PlayerContainer from './player/playerContainer';
 import GardenContainer from './garden/gardenContainer';
 import NotificationsContainer from './notifications/notificationsContainer';
 
@@ -21,7 +21,7 @@ class App extends Component {
           <h2 className={styles.appHeader}>Weed Wizard</h2>
           <div className={styles.appBody}>
             <PlayerActionsContainer />
-            <PlayerStatusContainer />
+            <PlayerContainer />
             <GardenContainer />
             <NotificationsContainer />
             <p>All weed names in this game are from or inspired by the <a href="http://weednamemaker.com/">Weed Name

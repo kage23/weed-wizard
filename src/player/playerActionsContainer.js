@@ -5,11 +5,12 @@ import {
   increaseHighness,
   decreaseWeedQuantity,
   decreaseSeedQuantity,
-  addNotification,
   addSeed,
+} from './playerActions';
+import {
+  addNotification,
   plantSeed
 } from '../state/actions';
-
 import { getToolById } from '../utils/toolUtils';
 import {
   getStrainById,
