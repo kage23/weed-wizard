@@ -1,16 +1,14 @@
 import { connect } from 'react-redux';
-import PlayerActionsComponent from './playerActionsComponent';
 
+import { addNotification } from '../notifications/notificationsActions';
+import PlayerActionsComponent from './playerActionsComponent';
 import {
   increaseHighness,
   decreaseWeedQuantity,
   decreaseSeedQuantity,
   addSeed,
 } from './playerActions';
-import {
-  addNotification,
-  plantSeed
-} from '../state/actions';
+import { plantSeed } from '../state/actions';
 import { getToolById } from '../utils/toolUtils';
 import {
   getStrainById,

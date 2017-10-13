@@ -1,59 +1,22 @@
 import { combineReducers } from 'redux';
 
 import {
-  UPDATE_NOTIFICATIONS,
-  ADD_NOTIFICATION,
   CHANGE_WEED_UOM,
   PLANT_SEED,
   AGE_PLANT,
   REMOVE_PLANT
 } from './actions';
 
-import {
-  DEFAULT_NOTIFICATION_LIFE,
-  PLANT_GROWTH_PHASES
-} from '../utils/constants';
+import { PLANT_GROWTH_PHASES } from '../utils/constants';
 
 import { plantAgeFilter } from '../utils/weedUtils';
 
+import notifications from '../notifications/notificationsReducers';
 import player from '../player/playerReducers';
 
 const initialSettings = {
   settingsUoM: 'oz' // unit of measurement
 };
-
-/**
- * Notification action reducers
- * @param state
- * @param action
- * @returns {*}
- */
-function notifications(state = [{
-  message: 'Welcome to Weed Wizard!',
-  life: DEFAULT_NOTIFICATION_LIFE,
-  timeStamp: new Date().valueOf()
-}], action = null) {
-  switch (action.type) {
-    case UPDATE_NOTIFICATIONS:
-      return state.filter((notification) => {
-        const notificationLife = notification.life;
-        return new Date().valueOf() - notification.timeStamp < notificationLife;
-      });
-
-    case ADD_NOTIFICATION:
-      return [
-        {
-          message: action.message,
-          life: action.life,
-          timeStamp: new Date().valueOf()
-        },
-        ...state
-      ];
-
-    default:
-      return state;
-  }
-}
 
 /**
  * Garden reducers
@@ -126,8 +89,8 @@ function settings(settings = initialSettings, action = null) {
 }
 
 export default combineReducers({
-  player,
+  garden,
   notifications,
-  settings,
-  garden
+  player,
+  settings
 });
