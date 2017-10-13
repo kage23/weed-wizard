@@ -7,7 +7,7 @@ import {
   decayHighness
 } from './playerActions';
 
-import { changeSettingsUoM } from '../state/actions';
+import { changeSettingsUoM } from '../settings/settingsActions';
 
 const mapStateToProps = state => {
   const { weed, tools, highness } = state.player;
