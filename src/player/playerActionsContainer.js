@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
+import React from 'react';
 
+import { addAlert } from '../alerts/alertsActions';
 import { plantSeed } from '../garden/gardenActions';
 import { addNotification } from '../notifications/notificationsActions';
 import PlayerActionsComponent from './playerActionsComponent';
@@ -87,6 +89,10 @@ const mapDispatchToProps = dispatch => {
       dispatch(plantSeed(strainToPlant));
       dispatch(decreaseSeedQuantity(strain.id));
       dispatch(addNotification(`You planted a ${strainToPlant.label} plant!`));
+    },
+
+    pauseGame: () => {
+      dispatch(addAlert('Game Is Paused', <div><p>Click Okay to unpause</p></div>));
     }
   };
 };

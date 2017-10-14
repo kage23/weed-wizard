@@ -5,8 +5,10 @@ import styles from './notifications.css';
 
 class NotificationsComponent extends React.Component {
   static propTypes = {
+    gameIsRunning: PropTypes.bool,
     notifications: PropTypes.array,
-    updateNotifications: PropTypes.func
+    ageNotifications: PropTypes.func,
+    notificationsUpdated: PropTypes.func
   };
 
   static contextTypes = {
@@ -16,15 +18,23 @@ class NotificationsComponent extends React.Component {
   constructor(props) {
     super(props);
 
+    this.ageNotificationsWhenGameIsRunning = this.ageNotificationsWhenGameIsRunning.bind(this);
     this.renderNotifications = this.renderNotifications.bind(this);
   }
 
   componentDidMount() {
-    this.context.loop.subscribe(this.props.updateNotifications);
+    this.context.loop.subscribe(this.ageNotificationsWhenGameIsRunning);
   }
 
   componentWillUnmount() {
-    this.context.loop.unsubscribe(this.props.updateNotifications);
+    this.context.loop.unsubscribe(this.ageNotificationsWhenGameIsRunning);
+  }
+
+  ageNotificationsWhenGameIsRunning() {
+    if (this.props.gameIsRunning) {
+      this.props.ageNotifications();
+    }
+    this.props.notificationsUpdated();
   }
 
   renderNotifications() {

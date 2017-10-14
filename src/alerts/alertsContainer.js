@@ -2,6 +2,10 @@ import { connect } from 'react-redux';
 import AlertsComponent from './alertsComponent';
 
 import { dismissAlert } from './alertsActions';
+import {
+  pauseGame,
+  resumeGame
+} from '../game/gameActions';
 
 const mapStateToProps = state => {
   return {
@@ -15,6 +19,14 @@ const mapDispatchToProps = dispatch => {
   return {
     dismissAlert: () => {
       dispatch(dismissAlert());
+    },
+
+    pauseGame: () => {
+      dispatch(pauseGame());
+    },
+
+    resumeGame: () => {
+      dispatch(resumeGame());
     }
   };
 };

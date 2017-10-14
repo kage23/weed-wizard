@@ -7,6 +7,7 @@ import {
 
 import AlertsContainer from './alerts/alertsContainer';
 import alerts from './alerts/alertsReducers';
+import game from './game/gameReducers';
 import GardenContainer from './garden/gardenContainer';
 import garden from './garden/gardenReducers';
 import NotificationsContainer from './notifications/notificationsContainer';
@@ -21,6 +22,7 @@ import styles from './App.css';
 
 let reducer = combineReducers({
   alerts,
+  game,
   garden,
   notifications,
   player,

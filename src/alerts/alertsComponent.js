@@ -12,28 +12,26 @@ class AlertsComponent extends Component {
     content: PropTypes.node,
     isOpen: PropTypes.bool,
 
-    dismissAlert: PropTypes.func
-  };
-
-  static contextTypes = {
-    loop: PropTypes.object
+    dismissAlert: PropTypes.func,
+    pauseGame: PropTypes.func,
+    resumeGame: PropTypes.func
   };
 
   componentDidMount() {
     if (this.props.isOpen) {
-      this.context.loop.stop();
+      this.props.pauseGame();
     }
   }
 
   componentWillReceiveProps(newProps) {
     if (newProps.isOpen) {
-      this.context.loop.stop();
+      this.props.pauseGame();
     }
   }
 
   closeModal() {
     this.props.dismissAlert();
-    this.context.loop.start();
+    this.props.resumeGame();
   }
 
   render() {
