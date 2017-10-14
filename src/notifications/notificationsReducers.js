@@ -23,9 +23,10 @@ export default function notifications(state = NotificationsState, action = null)
     case ADD_NOTIFICATION:
       return [
         {
+          created: now,
           message: action.message,
           life: action.life,
-          timeStamp: new Date().valueOf()
+          lastUpdated: now
         },
         ...state
       ];
