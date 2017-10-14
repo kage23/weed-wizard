@@ -8,8 +8,19 @@ import styles from './magic.css';
 
 class MagicSpellsComponent extends Component {
   static propTypes = {
-    spellsYouKnow: PropTypes.array
+    spellsYouKnow: PropTypes.array,
+    playerHighness: PropTypes.number,
+
+    castSpell: PropTypes.func
   };
+
+  tryToCastSpell(spell) {
+    if (this.props.playerHighness > 0) {
+      this.props.castSpell(spell);
+    } else {
+      debugger;
+    }
+  }
 
   renderSpellList() {
     const spells = this.props.spellsYouKnow.map((spell, idx) => {
@@ -19,8 +30,8 @@ class MagicSpellsComponent extends Component {
           key={idx}
           label={spell.name}
           description={spell.description}
-          selected={false}
-          onClick={() => { spell.effect(); }} />
+          selected={spell.active}
+          onClick={() => { this.tryToCastSpell(spell); }} />
       );
     });
 

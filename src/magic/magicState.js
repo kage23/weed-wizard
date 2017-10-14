@@ -1,6 +1,9 @@
 const MagicState = {
   maxActiveSpells: 1, // Maximum number of spells you can have active at once
-  spellsYouKnow: [0] // An array of indices for the SPELLS list in magicConstants
+  spellsYouKnow: [{ // An array of spells you know
+    id: 0, // An index for the SPELLS list in magicConstants
+    active: false // If the spell is currently active
+  }]
 };
 
 export default MagicState;
