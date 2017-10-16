@@ -1,24 +1,53 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import PropTypes    from 'prop-types';
+import React        from 'react';
 
-import ItemList from '../components/itemList';
+import ItemList     from '../components/itemList';
 import ItemListItem from '../components/itemListItem';
 
-import styles from './magic.css';
+import styles       from './magic.css';
 
-class MagicSpellsComponent extends Component {
+class MagicSpellsComponent extends React.Component {
   static propTypes = {
-    spellsYouKnow: PropTypes.array,
     playerHighness: PropTypes.number,
+    spellsYouKnow: PropTypes.array,
 
-    castSpell: PropTypes.func
+    addAlert: PropTypes.func,
+    addNotification: PropTypes.func,
+    castSpell: PropTypes.func,
+    deactivateSpell: PropTypes.func
   };
 
-  tryToCastSpell(spell) {
-    if (this.props.playerHighness > 0) {
+  componentDidMount() {
+    if (this.props.playerHighness <= 0) {
+      this.deactivateAllSpells();
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.playerHighness <= 0) {
+      this.deactivateAllSpells();
+    }
+  }
+
+  deactivateAllSpells() {
+    this.props.spellsYouKnow.forEach(spell => {
+      if (spell.active) {
+        this.props.deactivateSpell(spell);
+      }
+    });
+  }
+
+  toggleSpell(spell) {
+    if (spell.active) {
+      this.props.deactivateSpell(spell);
+    } else if (this.props.playerHighness > 0) {
       this.props.castSpell(spell);
+      this.props.addNotification(
+        <span>You feel the magic course through you as you cast <b>{spell.name}</b>!</span>
+      );
     } else {
-      debugger;
+      this.props.addAlert('Nothing Happens',
+        <div><p>For some reason, your magic only works when you're high!</p></div>);
     }
   }
 
@@ -31,7 +60,7 @@ class MagicSpellsComponent extends Component {
           label={spell.name}
           description={spell.description}
           selected={spell.active}
-          onClick={() => { this.tryToCastSpell(spell); }} />
+          onClick={() => { this.toggleSpell(spell); }} />
       );
     });
 
