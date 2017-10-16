@@ -29,6 +29,7 @@ export default function magic(state = MagicState, action = null) {
               active: false
             };
           }
+          return spell;
         })
       };
 
