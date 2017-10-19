@@ -22,11 +22,6 @@
   font-weight: 400;
 }
 
-.selectedItem {
-  /*TODO: All sorts of color-related styling and vars and whatever, that whole setup*/
-  background: #eee;
-}
-
 .weedChip {
   background: #ddd;
 }

@@ -23,6 +23,7 @@ import { getToolById }    from '../utils/toolUtils';
 import { getStrainById }  from '../utils/weedUtils';
 
 import styles             from './player.css';
+import componentStyles    from '../components/components.css';
 
 const TooltipChip = Tooltip(Chip);
 
@@ -102,7 +103,7 @@ class PlayerComponent extends React.Component {
           key={idx}
           caption={fullTool.label}
           legend={fullTool.description}
-          className={tool.selected ? styles.selectedItem : null}
+          className={tool.selected ? componentStyles.selectedItem : null}
           onClick={() => { this.props.selectTool(idx) }} />
       );
     });
@@ -132,7 +133,7 @@ class PlayerComponent extends React.Component {
             key={fullWeed.id}
             caption={fullWeed.label}
             legend={fullWeed.description}
-            className={weed.selected ? styles.selectedItem : null}
+            className={weed.selected ? componentStyles.selectedItem : null}
             rightActions={[
               <Chip
                 key='quantity'
