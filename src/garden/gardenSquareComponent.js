@@ -1,11 +1,14 @@
 import PropTypes  from 'prop-types';
 import React      from 'react';
+import Tooltip    from 'react-toolbox/lib/tooltip';
 
-import Button     from '../components/button';
+import { Button } from 'react-toolbox/lib/button';
 
 import styles     from './gardenSquare.css';
 
 let lastLoop = new Date();
+
+const TooltipButton = Tooltip(Button);
 
 class GardenSquare extends React.Component {
   static propTypes = {
@@ -50,7 +53,6 @@ class GardenSquare extends React.Component {
           if (this.props.activeSpells.indexOf(0) > -1) {
             ageDiff *= 40;
           }
-          console.log('ageDiff', ageDiff);
           this.props.agePlant(this.props.plant, ageDiff);
         }
         this.props.updatePlant(this.props.plant, now);
@@ -71,16 +73,18 @@ class GardenSquare extends React.Component {
           <span>{plant.phase}</span>
         </p>
         {plant.phase === 'Mature'
-          ? <Button
+          ? <TooltipButton
               label='Harvest'
               tooltip='Click to harvest this plant'
-              onClick={() => {this.props.harvestPlant(plant);}}
+              tooltipDelay={500}
+              onMouseUp={() => {this.props.harvestPlant(plant);}}
             />
           : null}
-        <Button
+        <TooltipButton
           label='Remove plant'
           tooltip='Click to remove this plant without harvesting it'
-          onClick={() => {this.props.removePlant(plant);}}/>
+          tooltipDelay={500}
+          onMouseUp={() => {this.props.removePlant(plant);}}/>
       </div>
     );
   };

@@ -1,7 +1,8 @@
-import PropTypes  from 'prop-types';
-import React      from 'react';
+import PropTypes    from 'prop-types';
+import React        from 'react';
+import { ListItem } from 'react-toolbox/lib/list';
 
-import styles     from './components.css';
+import styles       from './components.css';
 
 class ItemListItem extends React.Component {
   static propTypes = {
@@ -13,16 +14,15 @@ class ItemListItem extends React.Component {
 
   render() {
     return (
-      <div
+      <ListItem
+        caption={this.props.label}
+        legend={this.props.description}
         className={this.props.selected ? styles.itemListItemSelected : styles.itemListItem}
-        onClick={() => { this.props.onClick(); }}>
-        <p>
-          <b>{this.props.label}:</b> <i>{this.props.description}</i>
-        </p>
+        onClick={this.props.onClick}>
         {this.props.children ?
           <div>{this.props.children}</div> :
           null}
-      </div>
+      </ListItem>
     );
   }
 }

@@ -109,10 +109,10 @@ export default function player(state = PlayerState, action = null) {
     case SELECT_WEED:
       return {
         ...state,
-        weed: state.weed.map((weed, idx) => {
+        weed: state.weed.map((weed) => {
           return {
             ...weed,
-            selected: idx === action.index
+            selected: weed.id === action.id
           };
         })
       };

@@ -1,5 +1,9 @@
-import React from 'react';
+import React                  from 'react';
+import {
+  Row,
+  Col }                       from 'react-flexbox-grid';
 import { Provider }           from 'react-redux';
+import AppBar                 from 'react-toolbox/lib/app_bar';
 import {
   combineReducers,
   createStore }               from 'redux';
@@ -39,17 +43,31 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <div className={styles.app}>
-          <h2 className={styles.appHeader}>Weed Wizard</h2>
-          <div className={styles.appBody}>
-            <PlayerActionsContainer />
-            <PlayerContainer />
-            <MagicSpellsContainer />
-            <GardenContainer />
-            <NotificationsContainer />
-            <AlertsContainer />
-            <p>All weed names in this game are from or inspired by the <a href="http://weednamemaker.com/">Weed Name
-              Maker</a>.</p>
-          </div>
+          <AppBar title='Weed Wizard' />
+          <Row>
+            <Col xs={12}>
+              <PlayerActionsContainer />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={4}>
+              <PlayerContainer />
+            </Col>
+            <Col xs={4}>
+              <MagicSpellsContainer />
+            </Col>
+            <Col xs={4}>
+              <GardenContainer />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <NotificationsContainer />
+              <p>All weed names in this game are from or inspired by the <a href="http://weednamemaker.com/">Weed Name
+                Maker</a>.</p>
+            </Col>
+          </Row>
+          <AlertsContainer />
         </div>
       </Provider>
     );

@@ -1,7 +1,8 @@
 import PropTypes  from 'prop-types';
 import React      from 'react';
-
-import styles     from './components.css';
+import {
+  List,
+  ListSubHeader } from 'react-toolbox/lib/list';
 
 class ItemList extends React.Component {
   static propTypes = {
@@ -13,12 +14,12 @@ class ItemList extends React.Component {
 
   render() {
     return (
-      <div className={styles.itemList}>
-        <h3 className={styles.itemListHeader}>{this.props.header}</h3>
+      <List>
+        {this.props.header ? <ListSubHeader caption={this.props.header} /> : null}
         {this.props.before ? this.props.before : null}
         {this.props.list}
         {this.props.after ? this.props.after : null}
-      </div>
+      </List>
     );
   }
 }

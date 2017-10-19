@@ -21,7 +21,7 @@ class GardenComponent extends React.Component {
   render() {
     return (
       <div className={styles.garden}>
-        <h3>Garden</h3>
+        <h5>Garden</h5>
         <div className={styles.field}>
           {this.props.garden.map((plant, idx) => (
             <GardenSquareContainer

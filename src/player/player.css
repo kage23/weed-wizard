@@ -1,8 +1,3 @@
-.player {
-  flex-basis: 33.333333%;
-  padding-right: 10px;
-}
-
 .weedUomLabel {
   text-decoration: underline;
   cursor: pointer;
@@ -27,12 +22,11 @@
   font-weight: 400;
 }
 
-.weedListItemContent {
-  display: flex;
-  justify-content: flex-start;
+.selectedItem {
+  /*TODO: All sorts of color-related styling and vars and whatever, that whole setup*/
+  background: #eee;
 }
 
-.weedListItemContentItem {
-  flex: 1 0 0;
+.weedChip {
+  background: #ddd;
 }
-

@@ -1,12 +1,5 @@
-.appHeader {
-  background-color: #222;
-  margin: 0;
-  padding: 10px 20px;
-  color: white;
-}
-
-.appBody {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 10px 20px;
+:root {
+  --tooltip-background: rgba(97, 97, 97, .9);
+  --switch-track-on-color: rgba(63, 81, 181, 0.6);
+  --switch-track-off-color: rgba(220, 220, 220, 0.6);
 }
