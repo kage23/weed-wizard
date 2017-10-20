@@ -34,25 +34,21 @@ class PlayerActionsComponent extends React.Component {
           raised primary
           disabled={selectedWeed.quantity <= 0 || !selectedTool}
           tooltip={`Click to smoke ${selectedWeed.label} from your ${selectedTool.label}.`}
-          tooltipDelay={500}
-          onMouseUp={() => {
-            onSmokeWeed(selectedWeed, selectedTool);
-          }} />
+          tooltipDelay={250}
+          onClick={() => { onSmokeWeed(selectedWeed, selectedTool); }} />
         <TooltipButton
           label='Plant a Seed'
           raised primary
           disabled={selectedWeed.seeds <= 0 || !emptyGardenSquare}
           tooltip={`Click to plant a ${selectedWeed.label} seed in your garden.`}
-          tooltipDelay={500}
-          onMouseUp={() => {
-            onPlantSeed(selectedWeed);
-          }} />
+          tooltipDelay={250}
+          onClick={() => { onPlantSeed(selectedWeed); }} />
         <TooltipButton
           label='Pause Game'
           raised primary
           tooltip='Click to, uh, pause the game'
-          tooltipDelay={500}
-          onMouseUp={() => { pauseGame(); }} />
+          tooltipDelay={250}
+          onClick={() => { pauseGame(); }} />
       </Navigation>
     );
   }

@@ -190,7 +190,12 @@ module.exports = {
                   ],
                 },
               },
-              require.resolve('sass-loader'),
+              {
+                loader: require.resolve('sass-loader'),
+                options: {
+                  data: '@import "' + path.resolve(__dirname, '../src/_theme.scss') + '";'
+                },
+              },
             ],
           },
           // "file" loader makes sure those assets get served by WebpackDevServer.

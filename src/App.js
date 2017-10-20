@@ -24,8 +24,6 @@ import settings               from './settings/settingsReducers';
 
 //import logo                 from './logo.svg';
 
-import styles                 from './App.css';
-
 let reducer = combineReducers({
   alerts,
   game,
@@ -42,7 +40,7 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <div className={styles.app}>
+        <div>
           <AppBar title='Weed Wizard' />
           <Row>
             <Col xs={12}>

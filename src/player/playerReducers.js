@@ -85,7 +85,8 @@ export default function player(state = PlayerState, action = null) {
       const strainProps = getStrainById(action.strainId);
       const newWeed = {
         ...strainProps,
-        quantity: action.amount
+        quantity: action.amount,
+        seeds: 0
       };
       return {
         ...state,

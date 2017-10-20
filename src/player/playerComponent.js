@@ -77,14 +77,20 @@ class PlayerComponent extends React.Component {
     }
   };
 
-  renderHighness = () => (
-    <TooltipChip
-      tooltip={fixedTo1orRounded(Math.min(this.props.highness, HIGHNESS_CAP))} >
-      <Avatar
-        title={Math.round(Math.min(this.props.highness, HIGHNESS_CAP)).toString()} />
-      How High You Are
-    </TooltipChip>
-  );
+  renderHighness = () => {
+    const avatarTitle = this.props.highness >= 9.5 ?
+      '!' :
+      Math.round(Math.min(this.props.highness, HIGHNESS_CAP)).toString();
+
+    return (
+      <TooltipChip
+        tooltip={fixedTo1orRounded(Math.min(this.props.highness, HIGHNESS_CAP))} >
+        <Avatar
+          title={avatarTitle} />
+        How High You Are
+      </TooltipChip>
+    );
+  };
 
   renderMoney = () => (
     <Chip>
@@ -101,9 +107,10 @@ class PlayerComponent extends React.Component {
       return (
         <ListItem
           key={idx}
+          theme={componentStyles}
           caption={fullTool.label}
           legend={fullTool.description}
-          className={tool.selected ? componentStyles.selectedItem : null}
+          className={`${componentStyles.listItem} ${tool.selected ? componentStyles.selectedItem : null}`}
           onClick={() => { this.props.selectTool(idx) }} />
       );
     });
@@ -131,9 +138,10 @@ class PlayerComponent extends React.Component {
         return (
           <ListItem
             key={fullWeed.id}
+            theme={componentStyles}
             caption={fullWeed.label}
             legend={fullWeed.description}
-            className={weed.selected ? componentStyles.selectedItem : null}
+            className={`${componentStyles.listItem} ${weed.selected ? componentStyles.selectedItem : null}`}
             rightActions={[
               <Chip
                 key='quantity'
