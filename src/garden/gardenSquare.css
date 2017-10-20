@@ -13,6 +13,11 @@
 .cardText {
   padding: 2px;
 }
+
+.cardText:last-child {
+  padding-bottom: 2px;
+}
+
 .cardText p {
   font-size: 10px;
 }

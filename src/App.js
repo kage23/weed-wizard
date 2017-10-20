@@ -61,8 +61,6 @@ class App extends React.Component {
           <Row>
             <Col xs={12}>
               <NotificationsContainer />
-              <p>All weed names in this game are from or inspired by the <a href="http://weednamemaker.com/">Weed Name
-                Maker</a>.</p>
             </Col>
           </Row>
           <AlertsContainer />
